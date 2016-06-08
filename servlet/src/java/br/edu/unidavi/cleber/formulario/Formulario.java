@@ -28,12 +28,10 @@ public class Formulario extends HttpServlet {
                //String teste =  req.getParameter("sexo");
                //req.setAttribute("teste", teste);
         
-        /*
-        String erro = null;
-        if (req.getParameter("nome").isEmpty()) {
-            erro = "Nome não informado.";
-        }
-
+       
+       
+        
+/*
         System.out.println("ERRRO: " + erro);
 
         if (erro == null) {
@@ -53,6 +51,9 @@ public class Formulario extends HttpServlet {
             String sexo         = "";
             String comentario   = "";
             
+           
+            
+            
             if (req.getParameter("nome") != null) {
                 nome = req.getParameter("nome");
             }
@@ -71,16 +72,36 @@ public class Formulario extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet teste</title>");
+            out.println("<style>");
+            out.println(".box{"   
+                          + "width: 480px;"
+                          + "padding: 15px;"
+                          + "border: 1px solid #ccc;"
+                          + "}"
+            );
+            out.println("label{"   
+                          + ""
+                          + "}"
+            );
+            out.println(".inputCima{"   
+                          + "width:250px;"
+                          
+                          + "}"
+            );
+            out.println("input[type=\"text\"]{"   
+                          + "margin-left:4px;"
+                          + "margin-bottom: 10px;"
+                          + "}"
+            );
+            
+                out.println("</style>");
             out.println("</head>");
             out.println("<body>");
+            out.println("<div class=\"box\">");
             out.println("<form method=\"post\">");
             
             out.println("<label>Nome:</label>");
-            out.println("<input type=\"text\" name=\"nome\" value=\""+nome+"\"/>"); 
-            out.println("<br>");
-            
-            out.println("<label>E-mail:</label>");
-            out.println("<input type=\"email\" name=\"email\" value=\""+email+"\"/>");
+            out.println("<input type=\"text\" name=\"nome\" value=\""+nome+"\" class=\"inputCima\"/>"); 
             
             out.println("<label>Sexo: </label>");            
             if(req.getParameter("sexo") != null){
@@ -105,9 +126,13 @@ public class Formulario extends HttpServlet {
                 out.println("<label>F</label>");
                 out.println("<br>");
             }
-           
-            out.println("<label>Navegador preferido:</label>");
-            
+        
+            out.println("<label>E-mail:</label>");
+            out.println("<input type=\"email\" name=\"email\" value=\""+email+"\" class=\"inputCima\" />");
+            out.println("<br>");
+            out.println("<br>");
+  
+            out.println("<label>Navegador preferido:</label>"); 
             if(req.getParameter("navegadorPreferido") != null){
                 if(req.getParameter("navegadorPreferido").equals("1")){
                     out.println("<select name=\"navegadorPreferido\">"
@@ -139,6 +164,7 @@ public class Formulario extends HttpServlet {
                 + "<option value=\"3\">Mozilla</option>"
                 + "</select>");
             }
+            out.println("<br>");
             out.println("<br>");
             
             out.println("<label>Esportes que aprecia: </label>");
@@ -185,20 +211,17 @@ public class Formulario extends HttpServlet {
             }
             out.println("<label>nenhum deles</label>");
             out.println("<br>");
+            out.println("<br>");
             
             out.println("<label>Comentário sobre o esporte preferido</label>");
             out.println("<br>");
-            out.println("<textarea name=\"comentario\" >"+comentario+"</textarea>");
+            out.println("<textarea name=\"comentario\" cols=\"60\" rows=\"4\" >"+comentario+"</textarea>");
             out.println("<br>");
             out.println("<input type=\"submit\" value=\"Enviar\"/>");
-            out.println("<input type=\"reset\" value=\"Limpar\"/>");
-            
-             
-
-            // 
-             
+            out.println("<input type=\"reset\" name=\"limpar\" value=\"Limpar\"/>");
             out.println("</form>");
-
+            out.println("</div>");
+            
             out.println("</body>");
             out.println("</html>");
         }

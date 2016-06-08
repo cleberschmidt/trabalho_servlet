@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 @WebServlet(name = "Session", urlPatterns = {"/Session"})
 public class Calculadora extends HttpServlet {
@@ -55,7 +54,7 @@ public class Calculadora extends HttpServlet {
     
     // Se houver somente zeros depois da vírgula o número é formatado para não mostrar o(s) zero(s)
     public String verificaZeroDepoisVirgula(String resultado){
-    //16 numeros total
+    
         int cont = 0;
         String[] res;
         for(int i=0;i< resultado.length();i++){
@@ -121,15 +120,10 @@ public class Calculadora extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-        //  retirar segundo zero
-        
         HttpSession session = request.getSession();
         
-        String resultado;
         if (session.getAttribute("resultadoFinal") != null) {
-            resultado = (String) session.getAttribute("resultadoFinal");
-            
-            
+            String resultado = (String) session.getAttribute("resultadoFinal");
             
             
             if(request.getParameter("igual") != null && session.getAttribute("sinal") != null && session.getAttribute("num02") != null){
@@ -339,7 +333,6 @@ public class Calculadora extends HttpServlet {
                 out.println("</head>");
                 out.println("<body>");
                 out.println("<div style=\"border:1px solid #ccc; width:174px; background: #607d8b;\">");
-                
                 out.println("<form>");
                 out.println("<input type=\"text\" value=\""+session.getAttribute("resultadoFinal")+"\" style=\"text-align:right; padding:8px; width:149px; margin: 2px 2px 2px 2px\" disabled />");
                 out.println("<div class=\"botoes\" >");
@@ -362,6 +355,11 @@ public class Calculadora extends HttpServlet {
                 out.println("</div>");
                 out.println("</form>");
                 out.println("</div>");
+                
+                out.println("<h2><span style=\"color:#bdbdbd\"> Session - num01 = </span>"+session.getAttribute("num01")+"</h2>");
+                out.println("<h2><span style=\"color:#bdbdbd\"> Session - num02 = </span>"+session.getAttribute("num02")+"</h2>");
+                out.println("<h2><span style=\"color:#bdbdbd\"> Session - sinal = </span>"+session.getAttribute("sinal")+"</h2>");
+                out.println("<h2><span style=\"color:#bdbdbd\"> Session - resultadoFinal = </span>"+session.getAttribute("resultadoFinal")+"</h2>");
                 
                 
                 out.println("</body>");
